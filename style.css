@@ -1,0 +1,24 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#board {
+  display: grid;
+  grid-template-columns: repeat(var(--GRID_WIDTH), max-content);
+  border: 1px solid black;
+  grid-template-rows: repeat(var(--GRID_HEIGHT), max-content);
+  gap: 0.5em;
+}
+
+.cell {
+  width: 10px;
+  height: 10px;
+  aspect-ratio: 1 / 1;
+  padding: 2px;
+  border: 2.5px solid;
+  border-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 173, 189);
+}
