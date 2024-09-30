@@ -92,13 +92,8 @@ function addRandomCells() {
 
 function createCells() {
   const board = document.querySelector("#board");
-
-  console.log("height ", GRID_HEIGHT, "wieght ", GRID_WIDTH);
-
   for (let row = 0; row < GRID_HEIGHT; row++) {
-    console.log("This is my row ", row);
     for (let col = 0; col < GRID_WIDTH; col++) {
-      console.log("This is my col ", col);
       const cell = document.createElement("div");
       cell.classList.add("cell");
       // adds the row and column data to the cell element
