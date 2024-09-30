@@ -5,7 +5,6 @@ let interval;
 let generation = 0;
 let GRID_WIDTH = model.GRID_WIDTH;
 let GRID_HEIGHT = model.GRID_HEIGHT;
-let grid = model.grid;
 
 init();
 
@@ -24,7 +23,7 @@ function updateGrid() {
   if (isDead == false) {
     iterateGeneration();
     model.scanGrid();
-    renderGrid(model.grid);
+    view.renderGrid(model.grid);
   } else {
     endGame();
   }
@@ -69,7 +68,7 @@ function emptyGrid() {
   clearInterval(interval);
   model.grid.fill(0);
   console.log("Game is Dead");
-  renderGrid(model.grid);
+  view.renderGrid(model.grid);
 }
 
 function addRandomCells() {
@@ -91,4 +90,31 @@ function addRandomCells() {
   updateGrid();
 }
 
-export { init, startGame, addRandomCells, emptyGrid, GRID_HEIGHT, GRID_WIDTH, grid };
+function createCells() {
+  const board = document.querySelector("#board");
+
+  console.log("height ", GRID_HEIGHT, "wieght ", GRID_WIDTH);
+
+  for (let row = 0; row < GRID_HEIGHT; row++) {
+    console.log("This is my row ", row);
+    for (let col = 0; col < GRID_WIDTH; col++) {
+      console.log("This is my col ", col);
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
+      // adds the row and column data to the cell element
+      cell.dataset.row = row;
+      cell.dataset.col = col;
+      // adds cell to the board
+      board.appendChild(cell);
+
+      if (Math.random() < 0.5) {
+        model.grid.set(row, col, 1);
+      } else {
+        model.grid.set(row, col, 0);
+      }
+    }
+  }
+  view.renderGrid(model.grid); // Initial render of the grid
+}
+
+export { init, startGame, addRandomCells, emptyGrid, GRID_HEIGHT, GRID_WIDTH };
